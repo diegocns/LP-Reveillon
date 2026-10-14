@@ -2,6 +2,6 @@
   "name": "lp-reveillon",
   "private": true,
   "scripts": {
-    "build": "cp -r docs/. ."
+    "build": "rm -rf dist && mkdir dist && cp -r docs/. dist/ && cp -r docs/. ."
   }
 }
