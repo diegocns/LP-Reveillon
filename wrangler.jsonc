@@ -1,0 +1,11 @@
+{
+  // Site estático servido pelo Cloudflare Workers (sem código de servidor)
+  "name": "lp-reveillon",
+  "compatibility_date": "2026-10-13",
+  "assets": {
+    "directory": "./docs"
+  },
+  "routes": [
+    { "pattern": "reveillon.cocobambubsb.com.br", "custom_domain": true }
+  ]
+}
