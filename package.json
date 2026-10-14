@@ -2,10 +2,6 @@
   "name": "lp-reveillon",
   "private": true,
   "scripts": {
-    "build": "echo \"Site estático: nada para compilar\"",
-    "deploy": "wrangler deploy"
-  },
-  "devDependencies": {
-    "wrangler": "^4.0.0"
+    "build": "cp -r docs/. ."
   }
 }
