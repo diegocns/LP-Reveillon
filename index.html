@@ -32,7 +32,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Réveillon 2027 no Coco Bambu | Brasília">
   <meta property="og:description" content="Festa com show ao vivo das 22h às 03h em quatro unidades de Brasília. Faça sua pré-reserva.">
-  <meta property="og:image" content="https://eventos.cocobambubsb.com.br/__l5e/assets-v1/f0519416-e1bc-40fe-be69-bfb900a8c5cf/hero-cheers.png">
+  <meta property="og:image" content="https://diegocns.github.io/LP-Reveillon/assets/hero-1600.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#16110d">
 
@@ -120,7 +120,7 @@
     .brand span { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-soft); white-space: nowrap; }
     .nav { display: none; gap: 2rem; font-size: 13px; font-weight: 500; color: oklch(96% .012 80 / .75); }
     .nav a:hover { color: var(--gold-soft); }
-    .header .btn { min-height: 40px; padding: .6rem 1.2rem; font-size: 11px; }
+    .header .btn { min-height: 44px; padding: .6rem 1.2rem; font-size: 11px; }
     @media (min-width: 960px) { .nav { display: flex; } }
     @media (max-width: 420px) { .brand span { display: none; } }
 
@@ -142,6 +142,33 @@
     .stat strong { display: block; font-family: var(--font-serif); font-weight: 600; font-size: clamp(1.4rem, 4vw, 2rem); letter-spacing: -.02em; }
     .stat span { display: block; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted-foreground); margin-top: .25rem; }
 
+    /* Celular: tráfego do Meta chega aqui — formulário logo após o título */
+    @media (max-width: 767px) {
+      .header .container { height: 64px; }
+      .hero { padding: 84px 0 48px; }
+      .hero-grid { gap: 0; }
+      .hero-copy { display: contents; }
+      .hero-copy .eyebrow { font-size: 10.5px; letter-spacing: .24em; gap: .6rem; }
+      .hero-copy .eyebrow::before { width: 1.5rem; }
+      .hero h1 { font-size: clamp(2rem, 9.4vw, 2.6rem); margin: .9rem 0 .75rem; }
+      .hero p.lead { font-size: .95rem; line-height: 1.55; margin-bottom: 1.5rem; }
+      .hero-actions { display: none; }
+      .form-card { order: 1; padding: 1.25rem; }
+      .form-card h2 { font-size: 1.35rem; }
+      .form-card .sub { font-size: .85rem; margin-bottom: 1.1rem; }
+      .fields { gap: .85rem; }
+      .fields .row { grid-template-columns: 1fr 1.35fr; gap: .75rem; }
+      .stats { order: 2; margin-top: 2rem; padding-top: 1.5rem; gap: .5rem; }
+      .stat span { font-size: 9.5px; letter-spacing: .14em; }
+      .promo .container { gap: .4rem 1rem; }
+      .section { padding: 64px 0; }
+      .section-head { margin-bottom: 2.25rem; }
+      .unit-media { min-height: 260px; }
+      .unit-body { padding: 1.5rem 1.25rem 1.75rem; gap: 1.25rem; }
+      .price strong { font-size: 1.75rem; }
+      .step { padding: 1.5rem; }
+    }
+
     /* Form */
     .form-card {
       position: relative; border-radius: 1rem; padding: 1.5rem;
@@ -158,7 +185,7 @@
     .field input, .field select {
       width: 100%; min-height: 48px; padding: .75rem 1rem; border-radius: var(--radius);
       background: oklch(25% .018 60 / .6); border: 1px solid oklch(78% .12 80 / .25);
-      font-size: 15px; outline: none; transition: border-color .2s, box-shadow .2s; appearance: none; -webkit-appearance: none;
+      font-size: 16px; outline: none; transition: border-color .2s, box-shadow .2s; appearance: none; -webkit-appearance: none;
     }
     .field select {
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%23d9b87a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M1 1.5l5 5 5-5'/></svg>");
@@ -215,7 +242,7 @@
     .unit-media::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, oklch(10% .01 50 / .1), oklch(10% .01 50 / .9)); }
     .unit-media .artist {
       position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
-      width: min(78%, 360px); aspect-ratio: var(--crop, 680 / 400); overflow: hidden;
+      width: min(78%, 360px); overflow: hidden;
       -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%); mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
     }
     .unit-media .artist img { width: 100%; height: auto; }
@@ -303,7 +330,7 @@
   <header class="header" id="top">
     <div class="container">
       <a class="brand" href="#top" aria-label="Coco Bambu — início">
-        <img src="https://eventos.cocobambubsb.com.br/assets/coco-bambu-logo-CYPnzlyQ.png" alt="Coco Bambu" width="130" height="26">
+        <img src="assets/logo.webp" alt="Coco Bambu" width="130" height="26">
         <span>Réveillon 2027</span>
       </a>
       <nav class="nav" aria-label="Unidades">
@@ -320,10 +347,10 @@
     <!-- HERO + FORM -->
     <section class="hero">
       <div class="hero-bg" aria-hidden="true">
-        <img src="https://eventos.cocobambubsb.com.br/__l5e/assets-v1/f0519416-e1bc-40fe-be69-bfb900a8c5cf/hero-cheers.png" alt="" fetchpriority="high">
+        <img src="assets/hero-800.webp" srcset="assets/hero-800.webp 800w, assets/hero-1600.webp 1600w" sizes="100vw" alt="" fetchpriority="high" decoding="async">
       </div>
       <div class="container hero-grid">
-        <div>
+        <div class="hero-copy">
           <span class="eyebrow">Réveillon Coco Bambu · Brasília</span>
           <h1>Celebre a chegada de <span class="gold-text">2027</span> no Coco Bambu</h1>
           <p class="lead">Uma festa repleta de luxo, sofisticação e exclusividade. Gastronomia Coco Bambu, show ao vivo e a virada do ano em quatro unidades de Brasília.</p>
@@ -418,10 +445,10 @@
           <!-- Águas Claras -->
           <article class="unit reveal" id="aguas-claras">
             <div class="unit-media">
-              <img class="photo" src="https://eventos.cocobambubsb.com.br/assets/aguas-claras-Bm-fWhCZ.webp" alt="Salão do Coco Bambu Águas Claras" loading="lazy">
+              <img class="photo" src="assets/aguas-claras.webp" alt="Salão do Coco Bambu Águas Claras" loading="lazy">
               <span class="place">Brasília · DF</span>
-              <div class="artist" style="--crop: 472 / 290;">
-                <img src="https://d335luupugsy2.cloudfront.net/cms/files/322472/1791566998/$k9gkv2bluq" alt="Rafael Lima" loading="lazy">
+              <div class="artist">
+                <img src="assets/artista-aguas-claras.webp" width="472" height="290" alt="Rafael Lima" loading="lazy">
               </div>
             </div>
             <div class="unit-body">
@@ -453,10 +480,10 @@
           <!-- Iguatemi -->
           <article class="unit reveal" id="iguatemi">
             <div class="unit-media">
-              <img class="photo" src="https://eventos.cocobambubsb.com.br/__l5e/assets-v1/1fbbffae-26ea-4b0c-a15e-464f6e5dba38/iguatemi.png" alt="Salão do Coco Bambu Iguatemi Brasília" loading="lazy">
+              <img class="photo" src="assets/iguatemi.webp" alt="Salão do Coco Bambu Iguatemi Brasília" loading="lazy">
               <span class="place">Brasília · DF</span>
-              <div class="artist" style="--crop: 680 / 420;">
-                <img src="https://d335luupugsy2.cloudfront.net/cms/files/322472/1791566998/$eumr8zn4amk" alt="Elton Lourenço" loading="lazy">
+              <div class="artist">
+                <img src="assets/artista-iguatemi.webp" width="560" height="346" alt="Elton Lourenço" loading="lazy">
               </div>
             </div>
             <div class="unit-body">
@@ -476,10 +503,10 @@
           <!-- Lago Sul -->
           <article class="unit reveal" id="lago-sul">
             <div class="unit-media">
-              <img class="photo" src="https://eventos.cocobambubsb.com.br/__l5e/assets-v1/695ef4b0-ef43-4ad6-ba08-0baa39906343/lago-sul.png" alt="Salão do Coco Bambu Lago Sul" loading="lazy">
+              <img class="photo" src="assets/lago-sul.webp" alt="Salão do Coco Bambu Lago Sul" loading="lazy">
               <span class="place">Brasília · DF</span>
-              <div class="artist" style="--crop: 680 / 400;">
-                <img src="https://d335luupugsy2.cloudfront.net/cms/files/322472/1791566998/$7o0b0vimocj" alt="Banda Capital Music" loading="lazy">
+              <div class="artist">
+                <img src="assets/artista-lago-sul.webp" width="560" height="329" alt="Banda Capital Music" loading="lazy">
               </div>
             </div>
             <div class="unit-body">
@@ -502,10 +529,10 @@
           <!-- ParkShopping -->
           <article class="unit reveal" id="parkshopping">
             <div class="unit-media">
-              <img class="photo" src="https://eventos.cocobambubsb.com.br/assets/park-shopping-C2hMV2sP.webp" alt="Salão do Coco Bambu ParkShopping" loading="lazy">
+              <img class="photo" src="assets/parkshopping.webp" alt="Salão do Coco Bambu ParkShopping" loading="lazy">
               <span class="place">Brasília · DF</span>
-              <div class="artist" style="--crop: 680 / 420;">
-                <img src="https://d335luupugsy2.cloudfront.net/cms/files/322472/1791566998/$0qbl30nrbws" alt="Baile do Estima" loading="lazy">
+              <div class="artist">
+                <img src="assets/artista-parkshopping.webp" width="560" height="346" alt="Baile do Estima" loading="lazy">
               </div>
             </div>
             <div class="unit-body">
@@ -556,7 +583,7 @@
 
   <footer>
     <div class="container">
-      <img src="https://eventos.cocobambubsb.com.br/assets/coco-bambu-logo-CYPnzlyQ.png" alt="Coco Bambu" width="110" height="22">
+      <img src="assets/logo.webp" alt="Coco Bambu" width="110" height="22">
       <p>© 2026 Coco Bambu. Todos os direitos reservados.</p>
     </div>
   </footer>
