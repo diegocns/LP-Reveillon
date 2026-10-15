@@ -213,12 +213,6 @@
     .section-head p { color: var(--muted-foreground); max-width: 40rem; margin: 0 auto; }
     @media (min-width: 900px) { .nowrap-lg { white-space: nowrap; } }
 
-    /* Faixa promocional */
-    .promo { border-block: 1px solid var(--border); background: linear-gradient(90deg, oklch(18% .014 50), oklch(22% .03 75), oklch(18% .014 50)); }
-    .promo .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .75rem 1.5rem; padding-block: 1.1rem; text-align: center; }
-    .promo strong { font-family: var(--font-serif); font-weight: 600; font-size: 1.05rem; letter-spacing: -.01em; }
-    .promo span { font-size: 13px; color: var(--muted-foreground); }
-    .promo .tag { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; padding: .35rem .8rem; border-radius: 999px; border: 1px solid oklch(78% .12 80 / .45); color: var(--gold-soft); }
 
     /* Unidades */
     .units { display: grid; gap: 2rem; }
@@ -301,17 +295,25 @@
 
     /* Faixa do espumante */
     .sparkling {
-      position: relative; margin-top: 1.4rem; padding: .95rem 5.2rem .95rem 1.5rem; border-radius: 999px;
+      position: relative; margin-top: 1.6rem; padding: .95rem 7.4rem .95rem 1.5rem; border-radius: 999px;
       background: linear-gradient(100deg, oklch(70% .11 75), oklch(87% .1 88) 45%, oklch(74% .12 75));
       color: oklch(24% .045 210); box-shadow: 0 14px 40px -18px oklch(78% .12 80 / .7);
     }
     .sparkling strong { display: block; font-family: var(--font-serif); font-weight: 600; font-size: clamp(.95rem, 3.6vw, 1.12rem); letter-spacing: .02em; text-transform: uppercase; line-height: 1.2; }
-    .sparkling span { display: block; font-size: 12.5px; font-weight: 500; line-height: 1.35; margin-top: .2rem; }
-    .sparkling img {
-      position: absolute; right: 1.1rem; bottom: -.35rem; height: calc(100% + 2.6rem); width: auto;
-      filter: drop-shadow(0 6px 10px oklch(0% 0 0 / .35)); transform-origin: 50% 100%; animation: bottle 5s ease-in-out infinite;
+    .sparkling > span:not(.bottle) { display: block; font-size: 12.5px; font-weight: 500; line-height: 1.35; margin-top: .2rem; }
+    .sparkling > span:not(.bottle) { text-wrap: balance; }
+    .sparkling .nb { white-space: nowrap; }
+    .sparkling strong .nb { display: block; }
+    /* A garrafa "sai" de dentro da faixa: a base termina na borda inferior, fora da ponta arredondada */
+    .sparkling .bottle {
+      position: absolute; right: 2.6rem; bottom: 0; height: 7.4rem; padding: 0 .6rem;
+      display: flex; align-items: flex-end; overflow: hidden; pointer-events: none;
     }
-    @keyframes bottle { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(3deg); } }
+    .sparkling .bottle img {
+      height: 100%; width: auto; filter: drop-shadow(0 4px 8px oklch(0% 0 0 / .3));
+      transform-origin: 50% 100%; animation: bottle 5s ease-in-out infinite;
+    }
+    @keyframes bottle { 0%, 100% { transform: rotate(-2.5deg); } 50% { transform: rotate(2.5deg); } }
 
     /* Informações extras (acordeão) */
     .notes { border-block: 1px solid var(--border); }
@@ -394,21 +396,22 @@
       .form-card h2 { font-size: 1.35rem; }
       .form-card .sub { font-size: .85rem; margin-bottom: 1.1rem; }
       .fields { gap: .85rem; }
-      .promo .container { gap: .4rem 1rem; }
       .section { padding: 64px 0; }
       .section-head { margin-bottom: 2.25rem; }
       .unit-body { padding: 1.5rem 1.25rem 1.75rem; gap: 1.25rem; }
       .price strong { font-size: 1.75rem; }
       .step { padding: 1.5rem; }
-      .sparkling { padding-right: 4.4rem; padding-left: 1.25rem; }
-      .sparkling img { right: .8rem; }
+      .sparkling { padding: 1rem 5.3rem 1rem 1.2rem; border-radius: 1.4rem; }
+      .sparkling strong { font-size: clamp(.82rem, 3.85vw, 1rem); letter-spacing: .01em; white-space: nowrap; }
+      .sparkling > span:not(.bottle) { font-size: 12px; margin-top: .3rem; }
+      .sparkling .bottle { right: .7rem; height: 8rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
       .btn, .sticky-cta { transition: none; }
-      .btn-gold::after, .sparkling img, .glitter i, .cd b.tick { animation: none; }
+      .btn-gold::after, .sparkling .bottle img, .glitter i, .cd b.tick { animation: none; }
       #fireworks { display: none; }
     }
   </style>
@@ -526,15 +529,6 @@
       </div>
     </section>
 
-    <!-- FAIXA PROMOCIONAL -->
-    <div class="promo">
-      <div class="container">
-        <span class="tag">Águas Claras</span>
-        <strong>Ganhe um espumante Coco Bambu</strong>
-        <span>garantindo as melhores mesas e seu ingresso até 31/10</span>
-      </div>
-    </div>
-
     <!-- UNIDADES -->
     <section class="section" id="unidades">
       <div class="container">
@@ -571,9 +565,9 @@
                 <div class="price"><strong class="gold-text">R$ 420,00</strong><span>R$ 150 revertidos em consumação</span></div>
               </div>
               <div class="sparkling">
-                <strong>Ganhe um espumante Coco Bambu</strong>
-                <span>garantindo as melhores mesas e seu ingresso até 31/10</span>
-                <img src="assets/espumante.webp" alt="" width="73" height="175" loading="lazy">
+                <strong>Ganhe um espumante <span class="nb">Coco Bambu</span></strong>
+                <span>garantindo as melhores mesas e seu ingresso <span class="nb">até 31/10</span></span>
+                <span class="bottle" aria-hidden="true"><img src="assets/espumante.webp" alt="" width="73" height="168" loading="lazy"></span>
               </div>
               <details class="notes">
                 <summary><svg class="i" aria-hidden="true"><use href="#i-info"/></svg>Crianças e formas de pagamento<svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
