@@ -361,15 +361,6 @@
     footer p { font-size: 12px; color: var(--muted-foreground); }
     @media (min-width: 768px) { footer { padding-bottom: 2.5rem; } }
 
-    /* Barra fixa no celular */
-    .sticky-cta {
-      position: fixed; z-index: 40; left: 0; right: 0; bottom: 0; padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
-      background: oklch(12% .012 50 / .92); border-top: 1px solid var(--border); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      transform: translateY(110%); transition: transform .3s ease;
-    }
-    .sticky-cta.show { transform: none; }
-    .sticky-cta .btn { width: 100%; min-height: 48px; }
-    @media (min-width: 768px) { .sticky-cta { display: none; } }
 
     #confetti { position: fixed; inset: 0; z-index: 100; width: 100%; height: 100%; pointer-events: none; }
 
@@ -378,23 +369,26 @@
 
     /* Celular: tráfego do Meta chega aqui — formulário logo após o título */
     @media (max-width: 767px) {
-      .header .container { height: 64px; }
+      .header { position: absolute; }
+      .header .container { height: 64px; justify-content: center; }
+      .header .btn, .brand span { display: none; }
       .hero { padding: 80px 0 48px; }
       .hero-grid { gap: 0; }
       .hero-copy { display: contents; }
       .hero-copy .eyebrow { font-size: 10.5px; letter-spacing: .24em; gap: .6rem; }
       .hero-copy .eyebrow::before { width: 1.5rem; }
       .hero h1 { font-size: clamp(2rem, 9.4vw, 2.6rem); margin: .8rem 0 1rem; }
-      .countdown { margin-bottom: 1rem; gap: .6rem; }
-      .countdown-label { font-size: 9.5px; max-width: 4.8rem; }
+      .countdown { flex-direction: column; align-items: stretch; margin-bottom: 1.5rem; gap: .55rem; }
+      .countdown-label { font-size: 10px; max-width: none; text-align: center; }
       .cd { min-width: 0; flex: 1; padding: .4rem .3rem .3rem; }
       .countdown-units { flex: 1; }
       .cd b { font-size: 1.15rem; }
-      .hero p.lead { font-size: .95rem; line-height: 1.55; margin-bottom: 1.4rem; }
+      .hero p.lead { display: none; }
       .hero-actions { display: none; }
       .form-card { padding: 1.25rem; }
       .form-card h2 { font-size: 1.35rem; }
-      .form-card .sub { font-size: .85rem; margin-bottom: 1.1rem; }
+      .form-card h2 { margin-bottom: 1.1rem; }
+      .form-card .sub { display: none; }
       .fields { gap: .85rem; }
       .section { padding: 64px 0; }
       .section-head { margin-bottom: 2.25rem; }
@@ -410,7 +404,7 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
-      .btn, .sticky-cta { transition: none; }
+      .btn { transition: none; }
       .btn-gold::after, .sparkling .bottle img, .glitter i, .cd b.tick { animation: none; }
       #fireworks { display: none; }
     }
@@ -713,9 +707,6 @@
     </div>
   </footer>
 
-  <div class="sticky-cta" id="sticky-cta">
-    <a class="btn btn-gold" href="#reserva" data-track="cta_sticky">Fazer minha pré-reserva</a>
-  </div>
 
   <canvas id="confetti" hidden></canvas>
 
@@ -746,13 +737,11 @@
 
     // Header + CTA fixo no celular
     var header = document.querySelector('.header');
-    var sticky = document.getElementById('sticky-cta');
     var formCard = document.getElementById('reserva');
     var formVisible = true;
     function onScroll() {
       var y = window.scrollY;
       header.classList.toggle('scrolled', y > 20);
-      sticky.classList.toggle('show', y > 600 && !formVisible);
     }
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (e) { formVisible = e[0].isIntersecting; onScroll(); }).observe(formCard);
