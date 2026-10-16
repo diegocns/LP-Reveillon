@@ -3,3 +3,4 @@ node_modules
 dist
 .claude/
 docs/.claude/
+favicon-preview.png
