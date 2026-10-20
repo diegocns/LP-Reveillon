@@ -4,3 +4,4 @@ dist
 .claude/
 docs/.claude/
 favicon-preview.png
+preview-*.png

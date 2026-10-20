@@ -27,11 +27,11 @@
   <!-- End Meta Pixel -->
 
   <title>Réveillon 2027 no Coco Bambu | Brasília</title>
-  <meta name="description" content="Celebre a chegada de 2027 no Coco Bambu: festa com show ao vivo das 22h às 03h nas unidades Águas Claras, Iguatemi Brasília, Lago Sul e ParkShopping. Faça sua pré-reserva.">
+  <meta name="description" content="Celebre a chegada de 2027 no Coco Bambu: festa com show ao vivo das 22h às 03h nas unidades Águas Claras, Iguatemi Brasília, Lago Sul, ParkShopping e Brasília Shopping. Faça sua pré-reserva.">
   <link rel="canonical" href="https://evento.cocobambu.com/coco-bambu-reveillon-2027-df">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Réveillon 2027 no Coco Bambu | Brasília">
-  <meta property="og:description" content="Festa com show ao vivo das 22h às 03h em quatro unidades de Brasília. Faça sua pré-reserva.">
+  <meta property="og:description" content="Festa com show ao vivo das 22h às 03h em cinco unidades de Brasília. Faça sua pré-reserva.">
   <meta property="og:image" content="https://diegocns.github.io/LP-Reveillon/assets/hero-1600.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#16110d">
@@ -225,7 +225,8 @@
       scroll-margin-top: 88px;
     }
     @media (min-width: 900px) {
-      .unit { grid-template-columns: 1.05fr .95fr; }
+      .unit { grid-template-columns: .95fr 1.05fr; }
+      .unit:nth-child(even) { grid-template-columns: 1.05fr .95fr; }
       .unit:nth-child(even) .unit-media { order: 2; }
     }
     .unit-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--secondary); }
@@ -293,23 +294,31 @@
     .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .75rem; }
     .price strong { font-family: var(--font-serif); font-weight: 600; font-size: 2rem; letter-spacing: -.02em; }
     .price span { font-size: 13px; color: var(--muted-foreground); }
+    .price em { flex-basis: 100%; font-style: normal; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-soft); margin-bottom: -.15rem; }
     .price-ask { font-size: .95rem; color: var(--muted-foreground); }
     .price-ask strong { color: var(--foreground); font-weight: 600; }
 
-    /* Faixa do espumante */
+    /* Faixa do espumante: tamanhos acompanham a largura do card (cqi). Com espaço, título e
+       descrição ficam em 1 linha (classe .wide, aplicada pelo script); sem espaço, quebram em 2. */
+    .unit-body { container-type: inline-size; }
     .sparkling {
-      position: relative; margin-top: 1.6rem; padding: .95rem 7.4rem .95rem 1.5rem; border-radius: 999px;
+      --bh: clamp(6.6rem, 19cqi, 8.4rem);
+      --br: clamp(.7rem, 5cqi, 2.6rem);
+      position: relative; margin-top: 1.6rem; border-radius: 1.4rem;
+      padding: clamp(.9rem, 2.6cqi, 1.05rem) calc(var(--bh) * .435 + var(--br) + 1.7rem) clamp(.9rem, 2.6cqi, 1.05rem) clamp(1.15rem, 4cqi, 1.6rem);
       background: linear-gradient(100deg, oklch(70% .11 75), oklch(87% .1 88) 45%, oklch(74% .12 75));
       color: oklch(24% .045 210); box-shadow: 0 14px 40px -18px oklch(78% .12 80 / .7);
     }
-    .sparkling strong { display: block; font-family: var(--font-serif); font-weight: 600; font-size: clamp(.95rem, 3.6vw, 1.12rem); letter-spacing: .02em; text-transform: uppercase; line-height: 1.2; }
-    .sparkling > span:not(.bottle) { display: block; font-size: 12.5px; font-weight: 500; line-height: 1.35; margin-top: .2rem; }
-    .sparkling > span:not(.bottle) { text-wrap: balance; }
+    .sparkling.wide { --bh: clamp(5.6rem, 14cqi, 7.2rem); --br: 2.5rem; border-radius: 999px; }
+    .sparkling strong { display: block; font-family: var(--font-serif); font-weight: 600; font-size: clamp(.84rem, 3.9cqi, 1.18rem); letter-spacing: .01em; text-transform: uppercase; line-height: 1.2; text-wrap: balance; }
+    .sparkling > span:not(.bottle) { display: block; font-size: clamp(11.5px, 2.9cqi, 13.5px); font-weight: 500; line-height: 1.38; margin-top: .3rem; text-wrap: balance; }
     .sparkling .nb { white-space: nowrap; }
     .sparkling strong .nb { display: block; }
+    .sparkling.wide strong .nb { display: inline; }
+    .sparkling.wide strong, .sparkling.wide > span:not(.bottle) { white-space: nowrap; }
     /* A garrafa "sai" de dentro da faixa: a base termina na borda inferior, fora da ponta arredondada */
     .sparkling .bottle {
-      position: absolute; right: 2.6rem; bottom: 0; height: 7.4rem; padding: 0 .6rem;
+      position: absolute; right: var(--br); bottom: 0; height: var(--bh); padding: 0 .6rem;
       display: flex; align-items: flex-end; overflow: hidden; pointer-events: none;
     }
     .sparkling .bottle img {
@@ -398,10 +407,6 @@
       .unit-body { padding: 1.5rem 1.25rem 1.75rem; gap: 1.25rem; }
       .price strong { font-size: 1.75rem; }
       .step { padding: 1.5rem; }
-      .sparkling { padding: 1rem 5.3rem 1rem 1.2rem; border-radius: 1.4rem; }
-      .sparkling strong { font-size: clamp(.82rem, 3.85vw, 1rem); letter-spacing: .01em; white-space: nowrap; }
-      .sparkling > span:not(.bottle) { font-size: 12px; margin-top: .3rem; }
-      .sparkling .bottle { right: .7rem; height: 8rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -439,6 +444,7 @@
         <a href="#iguatemi">Iguatemi Brasília</a>
         <a href="#lago-sul">Lago Sul</a>
         <a href="#parkshopping">ParkShopping</a>
+        <a href="#brasilia-shopping">Brasília Shopping</a>
       </nav>
       <a class="btn btn-gold" href="#reserva" data-track="cta_header">Pré-reserva</a>
     </div>
@@ -464,7 +470,7 @@
               <div class="cd"><b data-cd="s">--</b><small>seg</small></div>
             </div>
           </div>
-          <p class="lead">Uma festa repleta de luxo, sofisticação e exclusividade. Gastronomia Coco Bambu, show ao vivo e a virada do ano em quatro unidades de Brasília.</p>
+          <p class="lead">Uma festa repleta de luxo, sofisticação e exclusividade. Gastronomia Coco Bambu, show ao vivo e a virada do ano em cinco unidades de Brasília.</p>
           <div class="hero-actions">
             <a class="btn btn-gold" href="#reserva" data-track="cta_hero">Fazer minha pré-reserva</a>
             <a class="btn btn-ghost" href="#unidades">Ver unidades e atrações</a>
@@ -484,6 +490,7 @@
                   <option value="Iguatemi - DF">Iguatemi Brasília</option>
                   <option value="Lago Sul">Lago Sul</option>
                   <option value="ParkShopping">ParkShopping</option>
+                  <option value="Brasília Shopping">Brasília Shopping</option>
                 </select>
                 <p class="err">Escolha uma unidade.</p>
               </div>
@@ -635,8 +642,8 @@
                 </dl>
               </div>
               <div class="prices">
-                <div class="price"><strong class="gold-text">R$ 700,00</strong><span>R$ 100 de consumo de bebidas</span></div>
-                <div class="price"><strong class="gold-text">R$ 900,00</strong><span>R$ 100 de consumo de bebidas</span></div>
+                <div class="price"><em>Salão interno</em><strong class="gold-text">R$ 700,00</strong><span>R$ 100 de consumo de bebidas</span></div>
+                <div class="price"><em>Área VIP</em><strong class="gold-text">R$ 900,00</strong><span>R$ 100 de consumo de bebidas</span></div>
               </div>
               <div class="unit-actions">
                 <a class="btn btn-gold" href="#reserva" data-unit="Lago Sul">Reservar nesta unidade</a>
@@ -669,6 +676,38 @@
               <p class="price-ask"><strong>Valores e mesas disponíveis:</strong> faça sua pré-reserva e a equipe da unidade te apresenta as opções.</p>
               <div class="unit-actions">
                 <a class="btn btn-gold" href="#reserva" data-unit="ParkShopping">Reservar nesta unidade</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Brasília Shopping -->
+          <article class="unit reveal" id="brasilia-shopping">
+            <div class="unit-media">
+              <span class="place">Brasília · DF</span>
+              <div class="carousel" data-carousel aria-roledescription="carrossel" aria-label="Fotos do Coco Bambu Brasília Shopping">
+                <div class="track">
+                  <figure class="slide"><img src="assets/brasilia-shopping-1-800.webp" srcset="assets/brasilia-shopping-1-800.webp 800w, assets/brasilia-shopping-1-1200.webp 1200w" sizes="(min-width: 900px) 600px, 100vw" alt="Coco Bambu Brasília Shopping: salão principal" loading="lazy" decoding="async" width="1200" height="800"><figcaption>Salão principal</figcaption></figure>
+                  <figure class="slide"><img src="assets/brasilia-shopping-2-800.webp" srcset="assets/brasilia-shopping-2-800.webp 800w, assets/brasilia-shopping-2-1200.webp 1200w" sizes="(min-width: 900px) 600px, 100vw" alt="Coco Bambu Brasília Shopping: lounge" loading="lazy" decoding="async" width="1200" height="800"><figcaption>Lounge</figcaption></figure>
+                  <figure class="slide"><img src="assets/brasilia-shopping-3-800.webp" srcset="assets/brasilia-shopping-3-800.webp 800w, assets/brasilia-shopping-3-1200.webp 1200w" sizes="(min-width: 900px) 600px, 100vw" alt="Coco Bambu Brasília Shopping: mezanino" loading="lazy" decoding="async" width="1200" height="800"><figcaption>Mezanino</figcaption></figure>
+                  <figure class="slide"><img src="assets/brasilia-shopping-4-800.webp" srcset="assets/brasilia-shopping-4-800.webp 800w, assets/brasilia-shopping-4-1200.webp 1200w" sizes="(min-width: 900px) 600px, 100vw" alt="Coco Bambu Brasília Shopping: vista do salão" loading="lazy" decoding="async" width="1200" height="800"><figcaption>Vista do salão</figcaption></figure>
+                  <figure class="slide"><img src="assets/brasilia-shopping-5-800.webp" srcset="assets/brasilia-shopping-5-800.webp 800w, assets/brasilia-shopping-5-1200.webp 1200w" sizes="(min-width: 900px) 600px, 100vw" alt="Coco Bambu Brasília Shopping: fachada" loading="lazy" decoding="async" width="1200" height="800"><figcaption>Fachada</figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <div class="unit-body">
+              <h3><small>Coco Bambu</small>Brasília Shopping</h3>
+              <div class="attraction">
+                <span class="avatar"><img src="assets/artista-brasilia-shopping.webp" alt="Banda Toca o Baile" loading="lazy" width="64" height="64"></span>
+                <dl>
+                  <dt>Atração</dt><dt>Horário</dt>
+                  <dd>Banda Toca o Baile</dd><dd>22h30 às 03h</dd>
+                </dl>
+              </div>
+              <div class="prices">
+                <div class="price"><strong class="gold-text">R$ 420,00</strong><span>R$ 150 em consumação</span></div>
+              </div>
+              <div class="unit-actions">
+                <a class="btn btn-gold" href="#reserva" data-unit="Brasília Shopping">Reservar nesta unidade</a>
               </div>
             </div>
           </article>
@@ -727,7 +766,8 @@
       'Águas Claras': '5561991327816',
       'Iguatemi - DF': '5561995761511',
       'Lago Sul': '5561993122495',
-      'ParkShopping': '5561998590025'
+      'ParkShopping': '5561998590025',
+      'Brasília Shopping': '5561999092672'
     };
     var UNIT_LABEL = { 'Iguatemi - DF': 'Iguatemi Brasília' };
 
@@ -854,6 +894,32 @@
         box.appendChild(s);
       }
     })();
+
+    // Faixa do espumante: usa 1 linha para título e descrição quando cabem; senão, 2 linhas
+    document.querySelectorAll('.sparkling').forEach(function (el) {
+      var title = el.querySelector('strong'), sub = el.querySelector(':scope > span:not(.bottle)');
+      var MIN_TITLE = 13, MIN_SUB = 11.5;
+      function fit() {
+        title.style.fontSize = sub.style.fontSize = '';
+        el.classList.add('wide');
+        var t = parseFloat(getComputedStyle(title).fontSize), s = parseFloat(getComputedStyle(sub).fontSize);
+        var k = Math.min(1, (title.clientWidth - 2) / title.scrollWidth, (sub.clientWidth - 2) / sub.scrollWidth);
+        if (t * k >= MIN_TITLE && s * k >= MIN_SUB) {
+          if (k < 1) { title.style.fontSize = (t * k).toFixed(2) + 'px'; sub.style.fontSize = (s * k).toFixed(2) + 'px'; }
+        } else {
+          el.classList.remove('wide');
+        }
+      }
+      fit();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+      if ('ResizeObserver' in window) {
+        var lastW = 0;
+        new ResizeObserver(function (e) {
+          var w = Math.round(e[0].contentRect.width);
+          if (w !== lastW) { lastW = w; fit(); }
+        }).observe(el.parentElement);
+      } else { window.addEventListener('resize', fit); }
+    });
 
     // Carrosséis das unidades
     // Infinito: cópias da última foto no início e da primeira no fim; ao parar numa cópia,
