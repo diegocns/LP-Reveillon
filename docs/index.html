@@ -1180,7 +1180,11 @@
         })
       ]).then(function () {
         track('generate_lead', { form_id: CONFIG.conversionIdentifier, unidade: unidade, pessoas_na_mesa: pessoas });
-        if (window.fbq) fbq('track', 'Lead', { content_name: 'Réveillon 2027 DF', content_category: unidade });
+        if (window.fbq) {
+          fbq('track', 'Lead', { content_name: 'Réveillon 2027 DF', content_category: unidade });
+          // Evento personalizado da LP (mesmo esquema do quiz): base da conversão "Lead - Reveillon"
+          fbq('trackCustom', 'LeadReveillon', { content_name: 'Réveillon 2027 DF', content_category: unidade, pessoas_na_mesa: pessoas });
+        }
         track('redirect_whatsapp', { unidade: unidade });
         submit.querySelector('.label').textContent = 'Abrindo o WhatsApp…';
         confetti(function () { window.location.href = waUrl; });
